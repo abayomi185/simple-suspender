@@ -1,0 +1,604 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EDF6DB1727DB680000EFA5C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6DB1627DB680000EFA5C9 /* AppDelegate.swift */; };
+		EDF6DB1B27DB680000EFA5C9 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB1927DB680000EFA5C9 /* Main.html */; };
+		EDF6DB1D27DB680000EFA5C9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB1C27DB680000EFA5C9 /* Icon.png */; };
+		EDF6DB1F27DB680000EFA5C9 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB1E27DB680000EFA5C9 /* Style.css */; };
+		EDF6DB2127DB680000EFA5C9 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB2027DB680000EFA5C9 /* Script.js */; };
+		EDF6DB2327DB680000EFA5C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6DB2227DB680000EFA5C9 /* ViewController.swift */; };
+		EDF6DB2627DB680000EFA5C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB2427DB680000EFA5C9 /* Main.storyboard */; };
+		EDF6DB2827DB680300EFA5C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB2727DB680300EFA5C9 /* Assets.xcassets */; };
+		EDF6DB3027DB680400EFA5C9 /* suspend Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EDF6DB2F27DB680400EFA5C9 /* suspend Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EDF6DB3527DB680400EFA5C9 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6DB3427DB680400EFA5C9 /* SafariWebExtensionHandler.swift */; };
+		EDF6DB3827DB680400EFA5C9 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB3727DB680400EFA5C9 /* _locales */; };
+		EDF6DB3A27DB680400EFA5C9 /* images in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB3927DB680400EFA5C9 /* images */; };
+		EDF6DB3C27DB680400EFA5C9 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB3B27DB680400EFA5C9 /* manifest.json */; };
+		EDF6DB3E27DB680400EFA5C9 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB3D27DB680400EFA5C9 /* background.js */; };
+		EDF6DB4027DB680400EFA5C9 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB3F27DB680400EFA5C9 /* content.js */; };
+		EDF6DB4227DB680400EFA5C9 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB4127DB680400EFA5C9 /* popup.html */; };
+		EDF6DB4427DB680400EFA5C9 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB4327DB680400EFA5C9 /* popup.css */; };
+		EDF6DB4627DB680400EFA5C9 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB4527DB680400EFA5C9 /* popup.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDF6DB3127DB680400EFA5C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDF6DB0B27DB680000EFA5C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDF6DB2E27DB680400EFA5C9;
+			remoteInfo = "suspend Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EDF6DB4E27DB680400EFA5C9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EDF6DB3027DB680400EFA5C9 /* suspend Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EDF6DB1327DB680000EFA5C9 /* suspend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = suspend.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDF6DB1627DB680000EFA5C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EDF6DB1A27DB680000EFA5C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
+		EDF6DB1C27DB680000EFA5C9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		EDF6DB1E27DB680000EFA5C9 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		EDF6DB2027DB680000EFA5C9 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		EDF6DB2227DB680000EFA5C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EDF6DB2527DB680000EFA5C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EDF6DB2727DB680300EFA5C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDF6DB2927DB680300EFA5C9 /* suspend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = suspend.entitlements; sourceTree = "<group>"; };
+		EDF6DB2A27DB680300EFA5C9 /* suspend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = suspend.entitlements; sourceTree = "<group>"; };
+		EDF6DB2F27DB680400EFA5C9 /* suspend Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "suspend Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDF6DB3427DB680400EFA5C9 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		EDF6DB3727DB680400EFA5C9 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		EDF6DB3927DB680400EFA5C9 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		EDF6DB3B27DB680400EFA5C9 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		EDF6DB3D27DB680400EFA5C9 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		EDF6DB3F27DB680400EFA5C9 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		EDF6DB4127DB680400EFA5C9 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		EDF6DB4327DB680400EFA5C9 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
+		EDF6DB4527DB680400EFA5C9 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		EDF6DB4727DB680400EFA5C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDF6DB4827DB680400EFA5C9 /* suspend_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = suspend_Extension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EDF6DB1027DB680000EFA5C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDF6DB2C27DB680400EFA5C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EDF6DB0A27DB680000EFA5C9 = {
+			isa = PBXGroup;
+			children = (
+				EDF6DB1527DB680000EFA5C9 /* suspend */,
+				EDF6DB3327DB680400EFA5C9 /* suspend Extension */,
+				EDF6DB1427DB680000EFA5C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EDF6DB1427DB680000EFA5C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDF6DB1327DB680000EFA5C9 /* suspend.app */,
+				EDF6DB2F27DB680400EFA5C9 /* suspend Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDF6DB1527DB680000EFA5C9 /* suspend */ = {
+			isa = PBXGroup;
+			children = (
+				EDF6DB1627DB680000EFA5C9 /* AppDelegate.swift */,
+				EDF6DB2227DB680000EFA5C9 /* ViewController.swift */,
+				EDF6DB2427DB680000EFA5C9 /* Main.storyboard */,
+				EDF6DB2727DB680300EFA5C9 /* Assets.xcassets */,
+				EDF6DB2927DB680300EFA5C9 /* suspend.entitlements */,
+				EDF6DB2A27DB680300EFA5C9 /* suspend.entitlements */,
+				EDF6DB1827DB680000EFA5C9 /* Resources */,
+			);
+			path = suspend;
+			sourceTree = "<group>";
+		};
+		EDF6DB1827DB680000EFA5C9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EDF6DB1927DB680000EFA5C9 /* Main.html */,
+				EDF6DB1C27DB680000EFA5C9 /* Icon.png */,
+				EDF6DB1E27DB680000EFA5C9 /* Style.css */,
+				EDF6DB2027DB680000EFA5C9 /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EDF6DB3327DB680400EFA5C9 /* suspend Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EDF6DB3427DB680400EFA5C9 /* SafariWebExtensionHandler.swift */,
+				EDF6DB4727DB680400EFA5C9 /* Info.plist */,
+				EDF6DB4827DB680400EFA5C9 /* suspend_Extension.entitlements */,
+				EDF6DB3627DB680400EFA5C9 /* Resources */,
+			);
+			path = "suspend Extension";
+			sourceTree = "<group>";
+		};
+		EDF6DB3627DB680400EFA5C9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EDF6DB3727DB680400EFA5C9 /* _locales */,
+				EDF6DB3927DB680400EFA5C9 /* images */,
+				EDF6DB3B27DB680400EFA5C9 /* manifest.json */,
+				EDF6DB3D27DB680400EFA5C9 /* background.js */,
+				EDF6DB3F27DB680400EFA5C9 /* content.js */,
+				EDF6DB4127DB680400EFA5C9 /* popup.html */,
+				EDF6DB4327DB680400EFA5C9 /* popup.css */,
+				EDF6DB4527DB680400EFA5C9 /* popup.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDF6DB1227DB680000EFA5C9 /* suspend */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDF6DB4F27DB680400EFA5C9 /* Build configuration list for PBXNativeTarget "suspend" */;
+			buildPhases = (
+				EDF6DB0F27DB680000EFA5C9 /* Sources */,
+				EDF6DB1027DB680000EFA5C9 /* Frameworks */,
+				EDF6DB1127DB680000EFA5C9 /* Resources */,
+				EDF6DB4E27DB680400EFA5C9 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDF6DB3227DB680400EFA5C9 /* PBXTargetDependency */,
+			);
+			name = suspend;
+			productName = suspend;
+			productReference = EDF6DB1327DB680000EFA5C9 /* suspend.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EDF6DB2E27DB680400EFA5C9 /* suspend Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDF6DB4B27DB680400EFA5C9 /* Build configuration list for PBXNativeTarget "suspend Extension" */;
+			buildPhases = (
+				EDF6DB2B27DB680400EFA5C9 /* Sources */,
+				EDF6DB2C27DB680400EFA5C9 /* Frameworks */,
+				EDF6DB2D27DB680400EFA5C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "suspend Extension";
+			productName = "suspend Extension";
+			productReference = EDF6DB2F27DB680400EFA5C9 /* suspend Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EDF6DB0B27DB680000EFA5C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					EDF6DB1227DB680000EFA5C9 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					EDF6DB2E27DB680400EFA5C9 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EDF6DB0E27DB680000EFA5C9 /* Build configuration list for PBXProject "suspend" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EDF6DB0A27DB680000EFA5C9;
+			productRefGroup = EDF6DB1427DB680000EFA5C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDF6DB1227DB680000EFA5C9 /* suspend */,
+				EDF6DB2E27DB680400EFA5C9 /* suspend Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDF6DB1127DB680000EFA5C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDF6DB1D27DB680000EFA5C9 /* Icon.png in Resources */,
+				EDF6DB2627DB680000EFA5C9 /* Main.storyboard in Resources */,
+				EDF6DB2127DB680000EFA5C9 /* Script.js in Resources */,
+				EDF6DB1B27DB680000EFA5C9 /* Main.html in Resources */,
+				EDF6DB2827DB680300EFA5C9 /* Assets.xcassets in Resources */,
+				EDF6DB1F27DB680000EFA5C9 /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDF6DB2D27DB680400EFA5C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDF6DB3E27DB680400EFA5C9 /* background.js in Resources */,
+				EDF6DB4427DB680400EFA5C9 /* popup.css in Resources */,
+				EDF6DB4227DB680400EFA5C9 /* popup.html in Resources */,
+				EDF6DB3A27DB680400EFA5C9 /* images in Resources */,
+				EDF6DB3C27DB680400EFA5C9 /* manifest.json in Resources */,
+				EDF6DB3827DB680400EFA5C9 /* _locales in Resources */,
+				EDF6DB4027DB680400EFA5C9 /* content.js in Resources */,
+				EDF6DB4627DB680400EFA5C9 /* popup.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDF6DB0F27DB680000EFA5C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDF6DB2327DB680000EFA5C9 /* ViewController.swift in Sources */,
+				EDF6DB1727DB680000EFA5C9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDF6DB2B27DB680400EFA5C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDF6DB3527DB680400EFA5C9 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDF6DB3227DB680400EFA5C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDF6DB2E27DB680400EFA5C9 /* suspend Extension */;
+			targetProxy = EDF6DB3127DB680400EFA5C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EDF6DB1927DB680000EFA5C9 /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDF6DB1A27DB680000EFA5C9 /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		EDF6DB2427DB680000EFA5C9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDF6DB2527DB680000EFA5C9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EDF6DB4927DB680400EFA5C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EDF6DB4A27DB680400EFA5C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		EDF6DB4C27DB680400EFA5C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "suspend Extension/suspend_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3PJ8XX6PP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "suspend Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "suspend Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yomitosh.suspend.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EDF6DB4D27DB680400EFA5C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "suspend Extension/suspend_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3PJ8XX6PP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "suspend Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "suspend Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yomitosh.suspend.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		EDF6DB5027DB680400EFA5C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = suspend/suspend.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3PJ8XX6PP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = suspend;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yomitosh.suspend;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EDF6DB5127DB680400EFA5C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = suspend/suspend.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3PJ8XX6PP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = suspend;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yomitosh.suspend;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EDF6DB0E27DB680000EFA5C9 /* Build configuration list for PBXProject "suspend" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDF6DB4927DB680400EFA5C9 /* Debug */,
+				EDF6DB4A27DB680400EFA5C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDF6DB4B27DB680400EFA5C9 /* Build configuration list for PBXNativeTarget "suspend Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDF6DB4C27DB680400EFA5C9 /* Debug */,
+				EDF6DB4D27DB680400EFA5C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDF6DB4F27DB680400EFA5C9 /* Build configuration list for PBXNativeTarget "suspend" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDF6DB5027DB680400EFA5C9 /* Debug */,
+				EDF6DB5127DB680400EFA5C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EDF6DB0B27DB680000EFA5C9 /* Project object */;
+}
