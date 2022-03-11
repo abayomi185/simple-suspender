@@ -3,12 +3,100 @@
 }
 
 body {
-    width: 100px;
-    padding: 10px;
+    width: 200px;
+/*    height: 300px;*/
 
     font-family: system-ui;
     text-align: center;
+    
+    margin: 0
+    
+/*    background-color: #464646*/
 }
+
+.header {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  
+}
+
+.main-button-div {
+/*  background-color: #464646*/
+/*  background-color: #141414*/
+/*  margin-top: 0.3rem;*/
+/*  margin-bottom: 0.3rem;*/
+}
+
+.custom-hr-top {
+  width: 75%;
+  margin: auto;
+  margin-bottom: 0.3rem;
+  text-align: center
+  height: 0px;
+  border: none;
+  border-top: 1px solid;
+  color: #808080;
+}
+
+.custom-hr-bottom {
+  width: 75%;
+  margin: auto;
+  margin-top: 0.3rem;
+  text-align: center
+  height: 0px;
+  border: none;
+  border-top: 1px solid;
+  color: #808080;
+}
+
+.button {
+  background-color: #0a84ff;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  width: 80%;
+  line-height: 20px;
+  list-style: none;
+  margin: 0.3rem;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #63acff;
+}
+
+#options-button {
+  width: 20%;
+  height: 30px;
+  padding: 0
+}
+
+#options-button img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
 
 @media (prefers-color-scheme: dark) {
     /* Dark Mode styles go here. */

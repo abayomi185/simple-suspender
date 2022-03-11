@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="popup.css">
-    <script type="module" src="popup.js"></script>
+<!--    <script type="module" src="popup.js"></script>-->
 </head>
 <body>
-    <strong>Hello World!</strong>
+    <div class="header">
+      <strong>Suspender</strong>
+    </div>
+<!--    <br/>-->
+    <div class="main-button-div">
+      <hr class="custom-hr-top">
+      <button class="button" id="suspend-active">Suspend <strong>this tab</strong></button>
+      <button class="button" id="suspend-all">Suspend <strong>all tabs</strong></button>
+      <button class="button" id="unsuspend">Unsuspend all tabs</button>
+      <hr class="custom-hr-bottom">
+      <button class="button" id="options-button"></button>
+    </div>
+    <script type="module" src="popup.js"></script>
 </body>
 </html>

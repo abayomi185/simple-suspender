@@ -25,6 +25,9 @@
 		EDF6DB4227DB680400EFA5C9 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB4127DB680400EFA5C9 /* popup.html */; };
 		EDF6DB4427DB680400EFA5C9 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB4327DB680400EFA5C9 /* popup.css */; };
 		EDF6DB4627DB680400EFA5C9 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB4527DB680400EFA5C9 /* popup.js */; };
+		EDF6DB5527DBA14800EFA5C9 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5427DBA14800EFA5C9 /* options.html */; };
+		EDF6DB5927DBA17A00EFA5C9 /* options.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5827DBA17A00EFA5C9 /* options.js */; };
+		EDF6DB5B27DBA18600EFA5C9 /* options.css in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5A27DBA18600EFA5C9 /* options.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		EDF6DB4527DB680400EFA5C9 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		EDF6DB4727DB680400EFA5C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDF6DB4827DB680400EFA5C9 /* suspend_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = suspend_Extension.entitlements; sourceTree = "<group>"; };
+		EDF6DB5427DBA14800EFA5C9 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
+		EDF6DB5827DBA17A00EFA5C9 /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = options.js; sourceTree = "<group>"; };
+		EDF6DB5A27DBA18600EFA5C9 /* options.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = options.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +166,9 @@
 				EDF6DB4127DB680400EFA5C9 /* popup.html */,
 				EDF6DB4327DB680400EFA5C9 /* popup.css */,
 				EDF6DB4527DB680400EFA5C9 /* popup.js */,
+				EDF6DB5427DBA14800EFA5C9 /* options.html */,
+				EDF6DB5827DBA17A00EFA5C9 /* options.js */,
+				EDF6DB5A27DBA18600EFA5C9 /* options.css */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -266,6 +275,9 @@
 				EDF6DB3827DB680400EFA5C9 /* _locales in Resources */,
 				EDF6DB4027DB680400EFA5C9 /* content.js in Resources */,
 				EDF6DB4627DB680400EFA5C9 /* popup.js in Resources */,
+				EDF6DB5527DBA14800EFA5C9 /* options.html in Resources */,
+				EDF6DB5B27DBA18600EFA5C9 /* options.css in Resources */,
+				EDF6DB5927DBA17A00EFA5C9 /* options.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +529,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -553,7 +565,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
