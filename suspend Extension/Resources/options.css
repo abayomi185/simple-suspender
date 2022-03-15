@@ -1,0 +1,13 @@
+
+
+body {
+    width: 200px;
+/*    height: 300px;*/
+
+    font-family: system-ui;
+    text-align: center;
+    
+    margin: 0;
+    
+    background-color: #464646;
+}

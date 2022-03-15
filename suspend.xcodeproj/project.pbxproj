@@ -28,6 +28,9 @@
 		EDF6DB5527DBA14800EFA5C9 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5427DBA14800EFA5C9 /* options.html */; };
 		EDF6DB5927DBA17A00EFA5C9 /* options.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5827DBA17A00EFA5C9 /* options.js */; };
 		EDF6DB5B27DBA18600EFA5C9 /* options.css in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5A27DBA18600EFA5C9 /* options.css */; };
+		EDF6DB5D27DBCC5000EFA5C9 /* suspend-template.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5C27DBCC4F00EFA5C9 /* suspend-template.html */; };
+		EDF6DB5F27DBCCE100EFA5C9 /* suspend-template.css in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB5E27DBCCE100EFA5C9 /* suspend-template.css */; };
+		EDF6DB6127DBCCF200EFA5C9 /* suspend-template.js in Resources */ = {isa = PBXBuildFile; fileRef = EDF6DB6027DBCCF200EFA5C9 /* suspend-template.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		EDF6DB5427DBA14800EFA5C9 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
 		EDF6DB5827DBA17A00EFA5C9 /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = options.js; sourceTree = "<group>"; };
 		EDF6DB5A27DBA18600EFA5C9 /* options.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = options.css; sourceTree = "<group>"; };
+		EDF6DB5C27DBCC4F00EFA5C9 /* suspend-template.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "suspend-template.html"; sourceTree = "<group>"; };
+		EDF6DB5E27DBCCE100EFA5C9 /* suspend-template.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "suspend-template.css"; sourceTree = "<group>"; };
+		EDF6DB6027DBCCF200EFA5C9 /* suspend-template.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "suspend-template.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,9 @@
 				EDF6DB5427DBA14800EFA5C9 /* options.html */,
 				EDF6DB5827DBA17A00EFA5C9 /* options.js */,
 				EDF6DB5A27DBA18600EFA5C9 /* options.css */,
+				EDF6DB5C27DBCC4F00EFA5C9 /* suspend-template.html */,
+				EDF6DB5E27DBCCE100EFA5C9 /* suspend-template.css */,
+				EDF6DB6027DBCCF200EFA5C9 /* suspend-template.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -270,6 +279,9 @@
 				EDF6DB3E27DB680400EFA5C9 /* background.js in Resources */,
 				EDF6DB4427DB680400EFA5C9 /* popup.css in Resources */,
 				EDF6DB4227DB680400EFA5C9 /* popup.html in Resources */,
+				EDF6DB5F27DBCCE100EFA5C9 /* suspend-template.css in Resources */,
+				EDF6DB5D27DBCC5000EFA5C9 /* suspend-template.html in Resources */,
+				EDF6DB6127DBCCF200EFA5C9 /* suspend-template.js in Resources */,
 				EDF6DB3A27DB680400EFA5C9 /* images in Resources */,
 				EDF6DB3C27DB680400EFA5C9 /* manifest.json in Resources */,
 				EDF6DB3827DB680400EFA5C9 /* _locales in Resources */,

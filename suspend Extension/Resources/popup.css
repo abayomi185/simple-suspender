@@ -1,37 +1,40 @@
+/*  suspend - popup.css */
+/*  Created by Abayomi Ikuru */
+
 :root {
-    color-scheme: light dark;
+  color-scheme: light dark;
 }
 
 body {
-    width: 200px;
-/*    height: 300px;*/
-
-    font-family: system-ui;
-    text-align: center;
-    
-    margin: 0
-    
-/*    background-color: #464646*/
+  /*    width: 200px;*/
+  /*    height: 300px;*/
+  font-family: system-ui;
+  text-align: center;
+  margin: 0;
 }
 
 .header {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  
 }
 
-.main-button-div {
-/*  background-color: #464646*/
-/*  background-color: #141414*/
-/*  margin-top: 0.3rem;*/
-/*  margin-bottom: 0.3rem;*/
+#main-section {
+  /* width: 225px; */
+  width: 245px;
 }
+
+/* #main-button-div {
+  background-color: #464646;
+  background-color: #141414;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+} */
 
 .custom-hr-top {
   width: 75%;
   margin: auto;
   margin-bottom: 0.3rem;
-  text-align: center
+  text-align: center;
   height: 0px;
   border: none;
   border-top: 1px solid;
@@ -42,11 +45,23 @@ body {
   width: 75%;
   margin: auto;
   margin-top: 0.3rem;
-  text-align: center
+  text-align: center;
   height: 0px;
   border: none;
   border-top: 1px solid;
   color: #808080;
+}
+
+/* .section-page-1 {
+  transition: all 5s linear;
+} */
+
+#section-page-2 {
+  /* transition: all 5s linear; */
+  width: 80%;
+  margin: auto;
+  padding-top: 1px;
+  padding-bottom: 0.6rem;
 }
 
 .button {
@@ -54,10 +69,11 @@ body {
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 40px;
@@ -82,22 +98,85 @@ body {
   background-color: #63acff;
 }
 
+.active-button {
+  background-color: #ff375f;
+  transition: all;
+}
+.active-button:hover,
+.active-button:focus {
+  background-color: #fc6583;
+}
+
 #options-button {
   width: 20%;
   height: 30px;
-  padding: 0
+  padding: 0;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
 }
 
 #options-button img {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   filter: invert(1);
   display: flex;
   align-items: center;
   margin: auto;
 }
 
+#more-options-button {
+  height: 30px;
+  padding: 0;
+}
+
+.suspend-duration-text {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#duration-list {
+  width: 50%;
+  font-size: 18px;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.checkbox-input-div {
+  width: 100%;
+  margin: auto;
+  text-align: left;
+  font-size: 13px;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+.checkbox-input-div input {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+  margin: auto;
+}
+.checkbox-input-div label {
+  cursor: pointer;
+}
+
+.checkboxes {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
 
 @media (prefers-color-scheme: dark) {
-    /* Dark Mode styles go here. */
+  /* Dark Mode styles go here. */
+}
+
+/* More */
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

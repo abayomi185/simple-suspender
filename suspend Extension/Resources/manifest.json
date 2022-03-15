@@ -40,7 +40,31 @@
         }
     },
     
-    "options_page": "popup.html",
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    },
+    
+    "commands": {
+      "suspend-active-tab": {
+        "suggested_key": {
+          "default": ""
+        },
+        "description": "Suspend the active tab"
+      },
+      "suspend-all-tab": {
+        "suggested_key": {
+          "default": ""
+        },
+        "description": "Suspend all tabs"
+      },
+      "unsuspend-all-tab": {
+        "suggested_key": {
+          "default": ""
+        },
+        "description": "Unsuspend all tabs"
+      }
+    },
 
-    "permissions": ["storage", "activeTab", "scripting"]
+    "permissions": ["storage", "activeTab", "tabs", "unlimitedStorage", "webNavigation"]
 }
