@@ -39,11 +39,6 @@ const durations = {
 // Suspend active button click handler
 suspendActiveButton.onclick = async function () {
   const currentTab = await browser.tabs.getCurrent();
-  const url = currentTab.url;
-  console.log(currentTab);
-  console.log(url);
-
-  //Check if url is valid probably best to do so in background.js
   browser.runtime.sendMessage({
     action: "SUSPEND",
     currentTab: currentTab,
@@ -54,17 +49,13 @@ suspendActiveButton.onclick = async function () {
 suspendAllButton.onclick = async function () {
   browser.runtime.sendMessage({
     action: "SUSPEND_ALL",
-    currentTab: currentTab,
   });
 };
 
 // Unsuspend all button click handler
 unsuspendAllButton.onclick = async function () {
-  // const templateUrl = browser.runtime.getURL("suspend-template.html");
-  // browser.tabs.create({ url: templateUrl });
   browser.runtime.sendMessage({
     action: "UNSUSPEND_ALL",
-    currentTab: currentTab,
   });
 };
 
@@ -78,18 +69,31 @@ durationList.onchange = (_) => {
 };
 
 tabSuspendInput.onchange = (_) => {
+  const currentTab = await browser.tabs.getCurrent();
   // Get value
   tabSuspendInput.checked;
+  browser.runtime.sendMessage({
+    action: "NEVER_SUSPEND_TAB",
+    currentTab: currentTab,
+  });
 };
 
 urlSuspendInput.onchange = (_) => {
-  // Get value
-  urlSuspendInput.checked;
+  const currentTab = await browser.tabs.getCurrent();
+  browser.runtime.sendMessage({
+    action: "NEVER_SUSPEND_URL",
+    status: urlSuspendInput.checked,
+    currentTab: currentTab,
+  });
 };
 
 domainSuspendInput.onchange = (_) => {
-  // Get value
-  domainSuspendInput.checked;
+  const currentTab = await browser.tabs.getCurrent();
+  browser.runtime.sendMessage({
+    action: "NEVER_SUSPEND_DOMAIN",
+    status: domainSuspendInput.checked,
+    currentTab: currentTab,
+  });
 };
 
 // More-Options button click handler

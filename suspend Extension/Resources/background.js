@@ -21,3 +21,6 @@ browser.runtime.onInstalled.addListener(() => {
 //browser.runtime.onSuspend(() => {
 //  browser.storage.local.set(state)
 //})
+
+// const templateUrl = browser.runtime.getURL("suspend-template.html");
+// browser.tabs.create({ url: templateUrl });
