@@ -16,9 +16,16 @@ refreshButton.onclick = async function () {
 
 // window.addEventListener("beforeunload", async (e) => {});
 
-const unsuspend = () => {
+const unsuspend = async () => {
+  const tabId = await browser.tabs.query({
+    active: true,
+    currentWindow: true,
+  })[0];
+  console.log(tabId);
+
   // Get query params from the url
   const urlParams = new URLSearchParams(window.location.search);
+  console.log("urlParams", urlParams);
   const url = urlParams.get("url");
 };
 

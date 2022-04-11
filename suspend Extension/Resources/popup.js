@@ -6,8 +6,11 @@
 const sectionPage1 = document.getElementById("section-page-1");
 const suspendActiveButton = document.getElementById("suspend-active");
 const suspendAllButton = document.getElementById("suspend-all");
+suspendAllButton.style.display = "none";
 const unsuspendAllButton = document.getElementById("unsuspend-all");
-const optionsButton = document.getElementById("options-button");
+unsuspendAllButton.style.display = "none";
+
+// const optionsButton = document.getElementById("options-button");
 
 // Section Page 2
 const sectionPage2 = document.getElementById("section-page-2");
@@ -18,15 +21,14 @@ const domainSuspendOption = document.getElementById("domain-suspend-input");
 
 // Options
 const moreOptionsButton = document.getElementById("more-options-button");
+moreOptionsButton.style.display = "none";
+const settingsButton = document.getElementById("settings-button");
 
 // Suspend Durations
 const durations = {
   never: 0,
-  "1 min": 1,
-  "2 mins": 2,
   "5 mins": 5,
-  "10 mins": 10,
-  "15 mins": 15,
+  "15 mins": 10,
   "30 mins": 30,
   "1 hour": 60,
   "2 hours": 120,
@@ -36,14 +38,15 @@ const durations = {
   "1 day": 1440,
 };
 
-let isReceivingFormInput = false;
+let actions = {};
 
 // Suspend active button click handler
 suspendActiveButton.onclick = async function () {
   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     browser.runtime.sendMessage({
-      action: "SUSPEND",
+      action: actions.FORCE_SUSPEND,
       activeTab: tabs[0].id,
+      url: tabs[0].url,
     });
   });
 };
@@ -51,14 +54,14 @@ suspendActiveButton.onclick = async function () {
 // Suspend all button click handler
 suspendAllButton.onclick = async function () {
   browser.runtime.sendMessage({
-    action: "SUSPEND_ALL",
+    action: actions.SUSPEND_ALL,
   });
 };
 
 // Unsuspend all button click handler
 unsuspendAllButton.onclick = async function () {
   browser.runtime.sendMessage({
-    action: "UNSUSPEND_ALL",
+    action: actions.UNSUSPEND_ALL,
   });
 };
 
@@ -75,7 +78,7 @@ durationList.onchange = (_) => {
 tabSuspendOption.onchange = async (_) => {
   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     browser.runtime.sendMessage({
-      action: "NEVER_SUSPEND_TAB",
+      action: actions.NEVER_SUSPEND_TAB,
       status: urlSuspendOption.checked,
       currentTab: tabs[0].id,
     });
@@ -86,7 +89,7 @@ tabSuspendOption.onchange = async (_) => {
 urlSuspendOption.onchange = async (_) => {
   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     browser.runtime.sendMessage({
-      action: "NEVER_SUSPEND_URL",
+      action: actions.NEVER_SUSPEND_URL,
       status: urlSuspendOption.checked,
       currentTab: tabs[0].id,
     });
@@ -97,7 +100,7 @@ urlSuspendOption.onchange = async (_) => {
 domainSuspendOption.onchange = async (_) => {
   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     browser.runtime.sendMessage({
-      action: "NEVER_SUSPEND_DOMAIN",
+      action: actions.NEVER_SUSPEND_DOMAIN,
       status: domainSuspendOption.checked,
       currentTab: tabs[0].id,
     });
@@ -106,6 +109,10 @@ domainSuspendOption.onchange = async (_) => {
 
 // More-Options button click handler
 moreOptionsButton.onclick = function () {
+  const optionsUrl = browser.runtime.getURL("options.html");
+  browser.tabs.create({ url: optionsUrl });
+};
+settingsButton.onclick = function () {
   const optionsUrl = browser.runtime.getURL("options.html");
   browser.tabs.create({ url: optionsUrl });
 };
@@ -138,6 +145,10 @@ moreOptionsButton.onclick = function () {
   // Set durationList value to value from local storage
   browser.storage.local.get("preferences", (items) => {
     durationList.value = items.preferences.suspendDuration;
+  });
+
+  browser.storage.local.get("actions", (items) => {
+    actions = items.actions;
   });
 
   browser.storage.local.get("tabStates", (items) => {
