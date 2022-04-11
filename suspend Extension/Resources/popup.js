@@ -12,9 +12,9 @@ const optionsButton = document.getElementById("options-button");
 // Section Page 2
 const sectionPage2 = document.getElementById("section-page-2");
 const durationList = document.getElementById("duration-list");
-const tabSuspendInput = document.getElementById("tab-suspend-input");
-const urlSuspendInput = document.getElementById("url-suspend-input");
-const domainSuspendInput = document.getElementById("domain-suspend-input");
+const tabSuspendOption = document.getElementById("tab-suspend-input");
+const urlSuspendOption = document.getElementById("url-suspend-input");
+const domainSuspendOption = document.getElementById("domain-suspend-input");
 
 // Options
 const moreOptionsButton = document.getElementById("more-options-button");
@@ -36,12 +36,15 @@ const durations = {
   "1 day": 1440,
 };
 
+let isReceivingFormInput = false;
+
 // Suspend active button click handler
 suspendActiveButton.onclick = async function () {
-  const currentTab = await browser.tabs.getCurrent();
-  browser.runtime.sendMessage({
-    action: "SUSPEND",
-    currentTab: currentTab,
+  browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    browser.runtime.sendMessage({
+      action: "SUSPEND",
+      activeTab: tabs[0].id,
+    });
   });
 };
 
@@ -62,37 +65,42 @@ unsuspendAllButton.onclick = async function () {
 // Onchange call for dropdown list
 durationList.onchange = (_) => {
   // Store value in local storage
-  browser.storage.local.get("options", (items) => {
-    items.options.suspendDuration = durationList.value;
+  browser.storage.local.get("preferences", (items) => {
+    items.preferences.suspendDuration = durationList.value;
     browser.storage.local.set(items);
   });
 };
 
-tabSuspendInput.onchange = (_) => {
-  const currentTab = await browser.tabs.getCurrent();
-  // Get value
-  tabSuspendInput.checked;
-  browser.runtime.sendMessage({
-    action: "NEVER_SUSPEND_TAB",
-    currentTab: currentTab,
+// Checkbox for tab suspend
+tabSuspendOption.onchange = async (_) => {
+  browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    browser.runtime.sendMessage({
+      action: "NEVER_SUSPEND_TAB",
+      status: urlSuspendOption.checked,
+      currentTab: tabs[0].id,
+    });
   });
 };
 
-urlSuspendInput.onchange = (_) => {
-  const currentTab = await browser.tabs.getCurrent();
-  browser.runtime.sendMessage({
-    action: "NEVER_SUSPEND_URL",
-    status: urlSuspendInput.checked,
-    currentTab: currentTab,
+// Checkbox for url suspend
+urlSuspendOption.onchange = async (_) => {
+  browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    browser.runtime.sendMessage({
+      action: "NEVER_SUSPEND_URL",
+      status: urlSuspendOption.checked,
+      currentTab: tabs[0].id,
+    });
   });
 };
 
-domainSuspendInput.onchange = (_) => {
-  const currentTab = await browser.tabs.getCurrent();
-  browser.runtime.sendMessage({
-    action: "NEVER_SUSPEND_DOMAIN",
-    status: domainSuspendInput.checked,
-    currentTab: currentTab,
+// Checkbox for domain suspend
+domainSuspendOption.onchange = async (_) => {
+  browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    browser.runtime.sendMessage({
+      action: "NEVER_SUSPEND_DOMAIN",
+      status: domainSuspendOption.checked,
+      currentTab: tabs[0].id,
+    });
   });
 };
 
@@ -101,6 +109,22 @@ moreOptionsButton.onclick = function () {
   const optionsUrl = browser.runtime.getURL("options.html");
   browser.tabs.create({ url: optionsUrl });
 };
+
+// document.addEventListener("keydown", (event) => {
+//   if (!isReceivingFormInput) {
+//     if (event.keyCode >= 48 && event.keyCode <= 90 && event.target.tagName) {
+//       if (
+//         event.target.tagName.toUpperCase() === "INPUT" ||
+//         event.target.tagName.toUpperCase() === "TEXTAREA" ||
+//         event.target.tagName.toUpperCase() === "FORM" ||
+//         event.target.isContentEditable === true ||
+//         event.target.type === "application/pdf"
+//       ) {
+//         isReceivingFormInput = true;
+//       }
+//     }
+//   }
+// });
 
 // Main function
 (async () => {
@@ -112,7 +136,17 @@ moreOptionsButton.onclick = function () {
   });
 
   // Set durationList value to value from local storage
-  browser.storage.local.get("options", (items) => {
-    durationList.value = items.options.suspendDuration;
+  browser.storage.local.get("preferences", (items) => {
+    durationList.value = items.preferences.suspendDuration;
+  });
+
+  browser.storage.local.get("tabStates", (items) => {
+    // Get checked status of checkboxes
+    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      tabSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendTab;
+      urlSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendUrl;
+      domainSuspendOption.checked =
+        items.tabStates[tabs[0].id].neverSuspendDomain;
+    });
   });
 })();
