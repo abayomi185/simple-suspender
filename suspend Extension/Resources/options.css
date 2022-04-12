@@ -1,13 +1,33 @@
-
+:root {
+  color-scheme: light dark;
+}
 
 body {
-    width: 200px;
-/*    height: 300px;*/
+  width: 500px;
+  /*    height: 300px;*/
 
-    font-family: system-ui;
-    text-align: center;
-    
-    margin: 0;
-    
-    background-color: #464646;
+  font-family: system-ui;
+  text-align: center;
+
+  margin: auto;
+}
+
+.main-section {
+  display: flex;
+  min-height: 100vh;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: -5rem;
+  flex-direction: column;
+}
+
+.socials {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  margin-top: 0.7rem;
+  margin-bottom: 0.5rem;
+  width: 200px;
 }

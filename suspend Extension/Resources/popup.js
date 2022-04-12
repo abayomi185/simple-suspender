@@ -71,9 +71,14 @@ unsuspendAllButton.onclick = async function () {
 // Onchange call for dropdown list
 durationList.onchange = (_) => {
   // Store value in local storage
-  browser.storage.local.get("preferences", (items) => {
-    items.preferences.suspendDuration = durationList.value;
-    browser.storage.local.set(items);
+  // browser.storage.local.get("preferences", (items) => {
+  //   items.preferences.suspendDuration = durationList.value;
+  //   browser.storage.local.set(items);
+  // });
+
+  browser.runtime.sendMessage({
+    action: actions.SET_SUSPEND_DURATION,
+    duration: durations[durationList.value],
   });
 };
 
@@ -83,8 +88,9 @@ tabSuspendOption.onchange = async (_) => {
     browser.runtime.sendMessage({
       action: actions.NEVER_SUSPEND_TAB,
       status: urlSuspendOption.checked,
-      currentTab: tabs[0].id,
+      activeTab: tabs[0].id,
     });
+    getSuspendOptionInfo();
   });
 };
 
@@ -94,8 +100,10 @@ urlSuspendOption.onchange = async (_) => {
     browser.runtime.sendMessage({
       action: actions.NEVER_SUSPEND_URL,
       status: urlSuspendOption.checked,
-      currentTab: tabs[0].id,
+      activeTab: tabs[0].id,
+      url: tabs[0].url,
     });
+    getSuspendOptionInfo();
   });
 };
 
@@ -105,8 +113,10 @@ domainSuspendOption.onchange = async (_) => {
     browser.runtime.sendMessage({
       action: actions.NEVER_SUSPEND_DOMAIN,
       status: domainSuspendOption.checked,
-      currentTab: tabs[0].id,
+      activeTab: tabs[0].id,
+      url: tabs[0].url,
     });
+    getSuspendOptionInfo();
   });
 };
 
@@ -136,28 +146,11 @@ settingsButton.onclick = function () {
 //   }
 // });
 
-// Set durationList value to value from local storage
-browser.storage.local.get("preferences", (items) => {
-  durationList.value = items.preferences.suspendDuration;
-});
-
-browser.storage.local.get("actions", (items) => {
-  actions = items.actions;
-});
-
-// Main function
-(() => {
-  Object.entries(durations).forEach(([key, value]) => {
-    var option = document.createElement("option");
-    option.text = key;
-    option.value = value;
-    durationList.appendChild(option);
-  });
-
+const getSuspendOptionInfo = () => {
   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     browser.runtime.sendMessage(
       {
-        action: actions.GET_SUSPEND_INFO,
+        action: "GI",
         activeTab: tabs[0].id,
       },
       (response) => {
@@ -168,4 +161,29 @@ browser.storage.local.get("actions", (items) => {
       }
     );
   });
+};
+
+// Main function
+(() => {
+  Object.entries(durations).forEach(([key, value]) => {
+    var option = document.createElement("option");
+    option.text = key;
+    option.value = value;
+    durationList.appendChild(option);
+  });
+
+  // Set durationList value to value from local storage
+  browser.storage.local.get("preferences", (items) => {
+    console.log(items);
+    durationList.value = items.preferences.suspendDuration;
+    durationList.value = Object.keys(items.preferences).find(
+      (k) => obj[k] === items.preferences.suspendDuration
+    );
+  });
+
+  browser.storage.local.get("actions", (items) => {
+    actions = items.actions;
+  });
+
+  getSuspendOptionInfo();
 })();

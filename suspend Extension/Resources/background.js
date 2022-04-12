@@ -7,6 +7,7 @@ const actions = {
   NEVER_SUSPEND_URL: "NU",
   NEVER_SUSPEND_DOMAIN: "ND",
   GET_SUSPEND_INFO: "GI",
+  SET_SUSPEND_DURATION: "SD",
 };
 
 let preferences = {
@@ -31,7 +32,6 @@ browser.runtime.onInstalled.addListener(() => {
 });
 
 //TODO:
-// browser.runtime.onStartup.addListener(() => {});
 
 const templateUrl = browser.runtime.getURL("suspend-template.html");
 const extensionUrlId = templateUrl.match(/\:\/\/(.*?)(?=\/)/)[1];
@@ -60,9 +60,46 @@ re = new RegExp(`/${extensionUrlId}/`);
 //  browser.storage.local.set(state)
 //})
 
-const neverSuspendTab = (tabId) => {};
-const neverSuspendDomain = (domain) => {};
-const neverSuspendUrl = (url) => {};
+const setNeverSuspendTab = (tabId) => {
+  browser.storage.local.get("tabWhitelist", (items) => {
+    if (items.tabWhitelist[tabId]) {
+      tabStates[tabId].neverSuspendTab = false;
+      delete items.tabWhitelist[tabId];
+      browser.storage.local.set(items);
+    } else {
+      items.tabWhitelist[tabId] = true;
+      tabStates[tabId].neverSuspendTab = true;
+      browser.storage.local.set(items);
+    }
+  });
+};
+const setNeverSuspendUrl = (tabId, url) => {
+  browser.storage.local.get("urlWhitelist", (items) => {
+    if (items.urlWhitelist[url]) {
+      tabStates[tabId].neverSuspendUrl = false;
+      delete items.tabWhitelist[url];
+      browser.storage.local.set(items);
+    } else {
+      items.urlWhitelist[url] = true;
+      tabStates[tabId].neverSuspendUrl = true;
+      browser.storage.local.set(items);
+    }
+  });
+};
+const setNeverSuspendDomain = (tabId, url) => {
+  const domain = new URL(url).hostname;
+  browser.storage.local.get("domainWhitelist", (items) => {
+    if (items.domainWhitelist[domain]) {
+      tabStates[tabId].neverSuspendDomain = false;
+      delete items.domainWhitelist[domain];
+      browser.storage.local.set(items);
+    } else {
+      items.domainWhitelist[domain] = true;
+      tabStates[tabId].neverSuspendDomain = true;
+      browser.storage.local.set(items);
+    }
+  });
+};
 
 const reload = (tabId) => {
   browser.tabs.update(tabId, { url: tabStates[tabId].url }, (tab) => {
@@ -116,14 +153,26 @@ browser.tabs.query({}, function (tabs) {
       status: tab.status,
       audible: tab.audible,
       url: tab.url,
+      id: tab.id,
       title: tab.title,
       incognito: tab.incognito,
       suspended: false,
-      neverSuspendTab: neverSuspendTab(tab.id),
-      neverSuspendUrl: neverSuspendDomain(tab.id),
-      neverSuspendDomain: neverSuspendUrl(tab.id),
     };
+
+    browser.storage.local.get("tabWhitelist").then((items) => {
+      tabStates[tab.id].neverSuspendTab = items.tabWhitelist[tab.id] || false;
+    });
+    browser.storage.local.get("urlWhitelist").then((items) => {
+      tabStates[tab.id].neverSuspendUrl = items.urlWhitelist[tab.url] || false;
+    });
+    browser.storage.local.get("domainWhitelist").then((items) => {
+      const domain = new URL(tab.url).hostname;
+      tabStates[tab.id].neverSuspendDomain =
+        items.domainWhitelist[domain] || false;
+    });
   }
+
+  console.log(tabStates);
 });
 
 browser.tabs.onActivated.addListener((activeTab) => {
@@ -138,12 +187,20 @@ browser.tabs.onActivated.addListener((activeTab) => {
         title: tab.title,
         incognito: tab.incognito,
         suspended: false,
-        neverSuspendTab: neverSuspendTab(tab.id),
-        neverSuspendUrl: neverSuspendDomain(tab.id),
-        neverSuspendDomain: neverSuspendUrl(tab.id),
       };
+      browser.storage.local.get("tabWhitelist").then((items) => {
+        tabStates[tab.id].neverSuspendTab = items.tabWhitelist[tab.id] || false;
+      });
+      browser.storage.local.get("urlWhitelist").then((items) => {
+        tabStates[tab.id].neverSuspendUrl =
+          items.urlWhitelist[tab.url] || false;
+      });
+      browser.storage.local.get("domainWhitelist").then((items) => {
+        const domain = new URL(tab.url).hostname;
+        tabStates[tab.id].neverSuspendDomain =
+          items.domainWhitelist[domain] || false;
+      });
       console.log("new tab");
-      console.log(tabStates);
     }
   });
 });
@@ -158,6 +215,13 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.greeting === "hello") sendResponse({ farewell: "goodbye" });
 
   switch (request.action) {
+    case actions.SET_SUSPEND_DURATION:
+      browser.storage.local.get("preferences", (items) => {
+        items.preferences.suspendDuration = request.duration;
+        browser.storage.local.set(items);
+      });
+      break;
+
     case actions.RELOAD:
       console.log(actions.RELOAD);
       reload(request.activeTab);
@@ -170,6 +234,31 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     case actions.GET_SUSPEND_INFO:
       console.log(actions.GET_SUSPEND_INFO);
+      sendResponse({
+        tabState: tabStates[request.activeTab],
+      });
+      break;
+
+    case actions.NEVER_SUSPEND_TAB:
+      console.log(actions.NEVER_SUSPEND_TAB);
+      setNeverSuspendTab(request.activeTab);
+      sendResponse({
+        tabState: tabStates[request.activeTab],
+      });
+      break;
+
+    case actions.NEVER_SUSPEND_URL:
+      console.log(actions.NEVER_SUSPEND_URL);
+      setNeverSuspendUrl(request.activeTab, request.url);
+      sendResponse({
+        tabState: tabStates[request.activeTab],
+      });
+      break;
+
+    case actions.NEVER_SUSPEND_DOMAIN:
+      console.log(actions.NEVER_SUSPEND_DOMAIN);
+      // Convert URL to domain
+      setNeverSuspendDomain(request.activeTab, request.url);
       sendResponse({
         tabState: tabStates[request.activeTab],
       });
