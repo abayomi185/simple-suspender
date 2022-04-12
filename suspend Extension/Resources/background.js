@@ -5,6 +5,7 @@ const actions = {
   NEVER_SUSPEND_TAB: "NT",
   NEVER_SUSPEND_URL: "NU",
   NEVER_SUSPEND_DOMAIN: "ND",
+  GET_SUSPEND_INFO: "GI",
 };
 
 let preferences = {
@@ -26,7 +27,7 @@ browser.runtime.onInstalled.addListener(() => {
 });
 
 const templateUrl = browser.runtime.getURL("suspend-template.html");
-const extensionUrlId = templateUrl.match(/(?<=\:\/\/)(.*?)(?=\/)/)[0];
+const extensionUrlId = templateUrl.match(/\:\/\/(.*?)(?=\/)/)[0];
 re = new RegExp(`/${extensionUrlId}/`);
 
 // window.setTimeout(() => {
@@ -55,12 +56,36 @@ re = new RegExp(`/${extensionUrlId}/`);
 const suspend = (tabId) => {};
 
 const forceSuspend = (tabId) => {
-  if (!re.test(tabStates[tabId].url)) {
-    browser.tabs.update(tabId, {
-      url: `${templateUrl}?url=${tabStates[tabId].url}`,
-    });
-    tabStates[tabId].suspended = true;
-  }
+  const tabCapture = browser.tabs.captureVisibleTab();
+
+  tabCapture.then(
+    (imageDataUrl) => {
+      console.log(imageDataUrl);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+
+  browser.tabs.get(tabId, function (tab) {
+    tabStates[tab.id] = {
+      active: tab.active,
+      status: tab.status,
+      audible: tab.audible,
+      url: tab.url,
+      title: tab.title,
+      incognito: tab.incognito,
+      suspended: false,
+      // imageCapture: imageDataUrl,
+    };
+
+    if (!re.test(tabStates[tabId].url)) {
+      browser.tabs.update(tabId, {
+        url: `${templateUrl}?url=${tabStates[tabId].url}`,
+      });
+      tabStates[tabId].suspended = true;
+    }
+  });
 };
 
 const suspendAll = () => {};
@@ -89,9 +114,17 @@ browser.tabs.query({}, function (tabs) {
 
 browser.tabs.onActivated.addListener((activeTab) => {
   // console.log(activeTab);
-  chrome.tabs.get(activeTab.tabId, function (tab) {
+  browser.tabs.get(activeTab.tabId, function (tab) {
     if (tabStates[tab.id] === undefined) {
-      tabStates[tab.id] = tab;
+      tabStates[tab.id] = {
+        active: tab.active,
+        status: tab.status,
+        audible: tab.audible,
+        url: tab.url,
+        title: tab.title,
+        incognito: tab.incognito,
+        suspended: false,
+      };
       console.log("new tab");
       console.log(tabStates);
     }
@@ -113,6 +146,12 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.action) {
     case actions.FORCE_SUSPEND:
       forceSuspend(request.activeTab);
+      break;
+
+    case actions.GET_SUSPEND_INFO:
+      sendResponse({
+        tabState: tabStates[request.activeTab],
+      });
       break;
 
     default:

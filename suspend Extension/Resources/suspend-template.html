@@ -3,22 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="suspend-template.css" />
+    <title>Example Title</title>
     <!--    <script type="module" src="popup.js"></script>-->
   </head>
   <body>
+    <div class="bg-image" id="bg-image"></div>
     <div class="main-section" id="main-section">
       <div class="center-section">
         <div class="center-section-wrapper">
           <div class="suspend-info">
-            <img src="./images/icon-48.png" class="suspend-info-icon" />
-            <p class="suspend-info-text">Hello World!</p>
+            <img
+              src="./images/icon-48.png"
+              class="suspend-info-icon"
+              id="suspend-info-icon"
+            />
+            <p class="suspend-info-text" id="suspend-info-text">Hello World!</p>
           </div>
-          <p class="suspended-url">https://example.dev</p>
+          <!-- <p class="suspended-url" id="suspended-url">https://example.dev</p> -->
+          <input
+            type="text"
+            class="suspended-url"
+            id="suspended-url"
+            value="https://example.dev"
+            disabled
+          />
           <button class="button" id="refresh-button">Refresh ( ⌘ + R )</button>
         </div>
       </div>
     </div>
-    <footer class="footer">Simple Suspender</footer>
+    <div class="footer">Simple Suspender</div>
     <script type="module" src="suspend-template.js"></script>
   </body>
 </html>

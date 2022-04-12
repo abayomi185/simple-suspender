@@ -1,14 +1,25 @@
 :root {
   color-scheme: light dark;
+  --main-bg-color: rgb(41, 31, 31);
 }
 
 body {
   /*    width: 200px;*/
   /*    height: 300px;*/
-  font-family: system-ui
-  
+  font-family: system-ui;
   text-align: center;
   margin: 0;
+}
+
+.bg-image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .main-section {
@@ -27,6 +38,7 @@ body {
   border-radius: 1rem;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   z-index: 10;
+  background-color: var(--main-bg-color);
 }
 
 .center-section-wrapper {
@@ -61,10 +73,10 @@ body {
   width: 90%;
   margin: auto;
   font-size: 12px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  text-align: center;
+  /* text-overflow: ellipsis; */
+  /* overflow: hidden; */
+  /* white-space: nowrap; */
+  /* text-align: center; */
 }
 
 .button {
@@ -105,8 +117,10 @@ body {
   text-align: center;
   margin: auto;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  background-color: var(--main-bg-color);
   padding: 0.5rem;
   border-radius: 0.5rem;
   user-select: none;
   -webkit-user-select: none;
+  z-index: 10;
 }

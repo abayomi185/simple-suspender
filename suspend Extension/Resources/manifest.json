@@ -71,6 +71,7 @@
     "activeTab",
     "tabs",
     "unlimitedStorage",
-    "webNavigation"
+    "webNavigation",
+    "<all_urls>"
   ]
 }
