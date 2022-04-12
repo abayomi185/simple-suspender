@@ -8,3 +8,5 @@ Customisable Keyboard Shortcuts
 Extension Suggestions:
 
 Manage state and saving to local state
+
+favicon

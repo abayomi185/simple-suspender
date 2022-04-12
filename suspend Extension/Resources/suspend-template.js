@@ -65,6 +65,7 @@ const unsuspend = async () => {
         activeTab: tabs[0].id,
       },
       (suspendInfo) => {
+        console.log(suspendInfo);
         // url = suspendInfo.tabState.url;
         suspendedUrl.value = suspendInfo.tabState.url;
         suspendedInfoText.innerHTML = suspendInfo.tabState.title;

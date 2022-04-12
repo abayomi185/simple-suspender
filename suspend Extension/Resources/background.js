@@ -7,7 +7,6 @@ const actions = {
   NEVER_SUSPEND_URL: "NU",
   NEVER_SUSPEND_DOMAIN: "ND",
   GET_SUSPEND_INFO: "GI",
-  GET_TAB_STATES: "GT",
 };
 
 let preferences = {
@@ -16,17 +15,23 @@ let preferences = {
 
 let tabStates = {};
 
-let tabWhitelist = [];
-let urlWhitelist = [];
-let domainWhitelist = [];
+let tabWhitelist = {};
+let urlWhitelist = {};
+let domainWhitelist = {};
 
+// On first install
 browser.runtime.onInstalled.addListener(() => {
   browser.storage.local.set({
     actions: actions,
     preferences: preferences,
-    // tabStates: tabStates,
+    tabWhitelist: tabWhitelist,
+    urlWhitelist: urlWhitelist,
+    domainWhitelist: domainWhitelist,
   });
 });
+
+//TODO:
+// browser.runtime.onStartup.addListener(() => {});
 
 const templateUrl = browser.runtime.getURL("suspend-template.html");
 const extensionUrlId = templateUrl.match(/\:\/\/(.*?)(?=\/)/)[1];
@@ -60,7 +65,6 @@ const neverSuspendDomain = (domain) => {};
 const neverSuspendUrl = (url) => {};
 
 const reload = (tabId) => {
-  console.log(tabStates[tabId].url);
   browser.tabs.update(tabId, { url: tabStates[tabId].url }, (tab) => {
     tabStates[tab.id].suspended = false;
   });

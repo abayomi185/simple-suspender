@@ -136,8 +136,17 @@ settingsButton.onclick = function () {
 //   }
 // });
 
+// Set durationList value to value from local storage
+browser.storage.local.get("preferences", (items) => {
+  durationList.value = items.preferences.suspendDuration;
+});
+
+browser.storage.local.get("actions", (items) => {
+  actions = items.actions;
+});
+
 // Main function
-(async () => {
+(() => {
   Object.entries(durations).forEach(([key, value]) => {
     var option = document.createElement("option");
     option.text = key;
@@ -145,32 +154,14 @@ settingsButton.onclick = function () {
     durationList.appendChild(option);
   });
 
-  // Set durationList value to value from local storage
-  browser.storage.local.get("preferences", (items) => {
-    durationList.value = items.preferences.suspendDuration;
-  });
-
-  browser.storage.local.get("actions", (items) => {
-    actions = items.actions;
-  });
-
-  // browser.storage.local.get("tabStates", (items) => {
-  //   // Get checked status of checkboxes
-  //   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  //     tabSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendTab;
-  //     urlSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendUrl;
-  //     domainSuspendOption.checked =
-  //       items.tabStates[tabs[0].id].neverSuspendDomain;
-  //   });
-  // });
-
   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    const suspendData = browser.runtime.sendMessage(
+    browser.runtime.sendMessage(
       {
         action: actions.GET_SUSPEND_INFO,
         activeTab: tabs[0].id,
       },
       (response) => {
+        console.log(response);
         tabSuspendOption.checked = response.tabState.neverSuspendTab;
         urlSuspendOption.checked = response.tabState.neverSuspendUrl;
         domainSuspendOption.checked = response.tabState.neverSuspendDomain;
