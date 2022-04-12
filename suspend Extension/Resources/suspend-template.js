@@ -27,19 +27,16 @@ refreshButton.onclick = async function () {
 
 // window.addEventListener("beforeunload", async (e) => {});
 
-let url = "";
+// let url = "";
 
 const unsuspend = async () => {
-  const tabId = await browser.tabs.query({
-    active: true,
-    currentWindow: true,
-  })[0];
-  console.log(tabId);
-
-  // Get query params from the url
-  const urlParams = new URLSearchParams(window.location.search);
-  console.log("urlParams", urlParams);
-  const url = urlParams.get("url");
+  browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    // update tab
+    browser.runtime.sendMessage({
+      action: "RL",
+      activeTab: tabs[0].id,
+    });
+  });
 };
 
 (async () => {
@@ -60,17 +57,21 @@ const unsuspend = async () => {
   // });
   // console.log(actions);
 
-  browser.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+  browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     // console.log(actions.GET_SUSPEND_INFO);
-    const suspendInfo = await browser.runtime.sendMessage({
-      action: "GI",
-      activeTab: tabs[0].id,
-    });
-    url = suspendInfo.tabState.url;
-    suspendedUrl.value = suspendInfo.tabState.url;
-    suspendedInfoText.innerHTML = suspendInfo.tabState.title;
-    bgImage.style.backgroundImage = `url(${suspendInfo.tabState.imageCapture})`;
-    tabTitle.innerHTML = suspendInfo.tabState.title;
-    // mainSection.style.backgroundImage = suspendInfo.tabState.imageCapture;
+    browser.runtime.sendMessage(
+      {
+        action: "GI",
+        activeTab: tabs[0].id,
+      },
+      (suspendInfo) => {
+        // url = suspendInfo.tabState.url;
+        suspendedUrl.value = suspendInfo.tabState.url;
+        suspendedInfoText.innerHTML = suspendInfo.tabState.title;
+        bgImage.style.backgroundImage = `url(${suspendInfo.tabState.imageCapture})`;
+        tabTitle.innerHTML = suspendInfo.tabState.title;
+        // mainSection.style.backgroundImage = suspendInfo.tabState.imageCapture;
+      }
+    );
   });
 })();

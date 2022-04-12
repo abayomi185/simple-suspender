@@ -49,6 +49,7 @@ suspendActiveButton.onclick = async function () {
       url: tabs[0].url,
     });
   });
+  window.close();
 };
 
 // Suspend all button click handler
@@ -56,6 +57,7 @@ suspendAllButton.onclick = async function () {
   browser.runtime.sendMessage({
     action: actions.SUSPEND_ALL,
   });
+  window.close();
 };
 
 // Unsuspend all button click handler
@@ -63,6 +65,7 @@ unsuspendAllButton.onclick = async function () {
   browser.runtime.sendMessage({
     action: actions.UNSUSPEND_ALL,
   });
+  window.close();
 };
 
 // Onchange call for dropdown list
@@ -151,13 +154,27 @@ settingsButton.onclick = function () {
     actions = items.actions;
   });
 
-  browser.storage.local.get("tabStates", (items) => {
-    // Get checked status of checkboxes
-    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      tabSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendTab;
-      urlSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendUrl;
-      domainSuspendOption.checked =
-        items.tabStates[tabs[0].id].neverSuspendDomain;
-    });
+  // browser.storage.local.get("tabStates", (items) => {
+  //   // Get checked status of checkboxes
+  //   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  //     tabSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendTab;
+  //     urlSuspendOption.checked = items.tabStates[tabs[0].id].neverSuspendUrl;
+  //     domainSuspendOption.checked =
+  //       items.tabStates[tabs[0].id].neverSuspendDomain;
+  //   });
+  // });
+
+  browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    const suspendData = browser.runtime.sendMessage(
+      {
+        action: actions.GET_SUSPEND_INFO,
+        activeTab: tabs[0].id,
+      },
+      (response) => {
+        tabSuspendOption.checked = response.tabState.neverSuspendTab;
+        urlSuspendOption.checked = response.tabState.neverSuspendUrl;
+        domainSuspendOption.checked = response.tabState.neverSuspendDomain;
+      }
+    );
   });
 })();
