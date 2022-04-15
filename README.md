@@ -20,3 +20,9 @@ favicon
 emoji in title
 
 Loop through and suspend
+
+Todo:
+Loop through and suspend at intervals
+
+Limitations:
+Safari nukes tab history when tab is updated initially
