@@ -2,7 +2,7 @@
 //  Created by Abayomi Ikuru
 
 // Actions
-let actions = {};
+var localActions = {};
 
 // Elements
 const suspendedUrl = document.getElementById("suspended-url");
@@ -29,39 +29,46 @@ refreshButton.onclick = async function () {
 
 // let url = "";
 
+//TODO: Fix reloading with keys
+
+// browser.webNavigation.onBeforeNavigate.addListener((_) => {
+//   console.log("onBeforeNavigate");
+//   browser.runtime.sendMessage({
+//     action: localActions.actions.UNSUSPEND,
+//     activeTab: tabs[0].id,
+//   });
+// });
+
 const unsuspend = async () => {
   browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     // update tab
     browser.runtime.sendMessage({
-      action: "RL",
+      action: localActions.actions.RELOAD,
       activeTab: tabs[0].id,
     });
   });
 };
 
 (async () => {
-  if (sessionStorage.getItem("ssuspender-reloaded") === null) {
-    sessionStorage.setItem("ssuspender-reloaded", "false");
-    console.log("reloaded is set for first time");
-  } else {
-    sessionStorage.getItem("ssuspender-reloaded") === "false"
-      ? sessionStorage.setItem("ssuspender-reloaded", "true")
-      : sessionStorage.setItem("ssuspender-reloaded", "false");
+  // if (sessionStorage.getItem("ssuspender-reloaded") === null) {
+  //   sessionStorage.setItem("ssuspender-reloaded", "false");
+  //   console.log("reloaded is set for first time");
+  // } else {
+  //   sessionStorage.getItem("ssuspender-reloaded") === "false"
+  //     ? sessionStorage.setItem("ssuspender-reloaded", "true")
+  //     : sessionStorage.setItem("ssuspender-reloaded", "false");
 
-    console.log(sessionStorage.getItem("ssuspender-reloaded"));
-  }
-  sessionStorage.getItem("ssuspender-reloaded") === "true" && unsuspend();
+  //   console.log(sessionStorage.getItem("ssuspender-reloaded"));
+  // }
+  // sessionStorage.getItem("ssuspender-reloaded") === "true" && unsuspend();
 
-  // await browser.storage.local.get("actions", (items) => {
-  //   actions = items.actions;
-  // });
-  // console.log(actions);
+  localActions = await browser.storage.local.get("actions");
 
   browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     // console.log(actions.GET_SUSPEND_INFO);
     browser.runtime.sendMessage(
       {
-        action: "GI",
+        action: localActions.actions.GET_SUSPEND_INFO,
         activeTab: tabs[0].id,
       },
       (suspendInfo) => {
@@ -70,8 +77,13 @@ const unsuspend = async () => {
         suspendedUrl.value = suspendInfo.tabState.url;
         suspendedInfoText.innerHTML = suspendInfo.tabState.title;
         bgImage.style.backgroundImage = `url(${suspendInfo.tabState.imageCapture})`;
-        tabTitle.innerHTML = suspendInfo.tabState.title;
-        // mainSection.style.backgroundImage = suspendInfo.tabState.imageCapture;
+        tabTitle.innerHTML = `😴 ${suspendInfo.tabState.title}`;
+
+        if (suspendInfo.tabState.suspended === false) {
+          console.log(suspendInfo.tabState.suspended);
+          // unsuspend
+          unsuspend();
+        }
       }
     );
   });

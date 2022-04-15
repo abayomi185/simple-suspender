@@ -70,15 +70,9 @@ unsuspendAllButton.onclick = async function () {
 
 // Onchange call for dropdown list
 durationList.onchange = (_) => {
-  // Store value in local storage
-  // browser.storage.local.get("preferences", (items) => {
-  //   items.preferences.suspendDuration = durationList.value;
-  //   browser.storage.local.set(items);
-  // });
-
   browser.runtime.sendMessage({
     action: actions.SET_SUSPEND_DURATION,
-    duration: durations[durationList.value],
+    duration: durationList.value,
   });
 };
 
@@ -176,9 +170,6 @@ const getSuspendOptionInfo = () => {
   browser.storage.local.get("preferences", (items) => {
     console.log(items);
     durationList.value = items.preferences.suspendDuration;
-    durationList.value = Object.keys(items.preferences).find(
-      (k) => obj[k] === items.preferences.suspendDuration
-    );
   });
 
   browser.storage.local.get("actions", (items) => {

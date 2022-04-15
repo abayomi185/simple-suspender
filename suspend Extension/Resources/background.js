@@ -1,5 +1,6 @@
 const actions = {
   RELOAD: "RL",
+  UNSUSPEND: "US",
   FORCE_SUSPEND: "FS",
   SUSPEND_ALL: "SA",
   UNSUSPEND_ALL: "UA",
@@ -30,6 +31,8 @@ browser.runtime.onInstalled.addListener(() => {
     domainWhitelist: domainWhitelist,
   });
 });
+
+// browser.runtime.onSuspend.addListener(() => {});
 
 //TODO:
 
@@ -101,13 +104,34 @@ const setNeverSuspendDomain = (tabId, url) => {
   });
 };
 
-const reload = (tabId) => {
+const reload = (tabId, reloadNow = true) => {
   browser.tabs.update(tabId, { url: tabStates[tabId].url }, (tab) => {
     tabStates[tab.id].suspended = false;
   });
+  if (reloadNow) {
+    console.log("reloading");
+  } else {
+    console.log("reloading in " + preferences.minsToSuspend + " minutes");
+  }
 };
 
-const suspend = (tabId) => {};
+const suspend = (tabId) => {
+  browser.tab.get(tabId, function (tab) {
+    if (
+      tab.status === "complete" &&
+      !tabStates[tab.id].suspended &&
+      !tabStates[tab.id].neverSuspendTab &&
+      !tabStates[tab.id].neverSuspendUrl &&
+      !tabStates[tab.id].neverSuspendDomain &&
+      !tabStates[tab.id].audible &&
+      !tabStates[tab.id].active &&
+      !tabStates[tab.id].incognito &&
+      !tabStates[tab.id].muted
+    ) {
+      forceSuspend(tabId);
+    }
+  });
+};
 
 const forceSuspend = async (tabId) => {
   const tabCapture = await browser.tabs.captureVisibleTab({
@@ -115,6 +139,8 @@ const forceSuspend = async (tabId) => {
   });
 
   browser.tabs.get(tabId, function (tab) {
+    console.log(tab);
+
     if (!re.test(tabStates[tabId].url)) {
       tabStates[tab.id] = {
         ...tabStates[tab.id],
@@ -124,6 +150,7 @@ const forceSuspend = async (tabId) => {
         url: tab.url,
         title: tab.title,
         incognito: tab.incognito,
+        muted: tab.mutedInfo.muted,
         suspended: false,
         imageCapture: tabCapture,
       };
@@ -156,16 +183,28 @@ browser.tabs.query({}, function (tabs) {
       id: tab.id,
       title: tab.title,
       incognito: tab.incognito,
+      muted: tab.mutedInfo.muted,
       suspended: false,
     };
 
-    browser.storage.local.get("tabWhitelist").then((items) => {
+    // browser.storage.local.get("tabWhitelist").then((items) => {
+    //   tabStates[tab.id].neverSuspendTab = items.tabWhitelist[tab.id] || false;
+    // });
+    browser.storage.local.get("tabWhitelist", (items) => {
       tabStates[tab.id].neverSuspendTab = items.tabWhitelist[tab.id] || false;
     });
-    browser.storage.local.get("urlWhitelist").then((items) => {
+    // browser.storage.local.get("urlWhitelist").then((items) => {
+    //   tabStates[tab.id].neverSuspendUrl = items.urlWhitelist[tab.url] || false;
+    // });
+    browser.storage.local.get("urlWhitelist", (items) => {
       tabStates[tab.id].neverSuspendUrl = items.urlWhitelist[tab.url] || false;
     });
-    browser.storage.local.get("domainWhitelist").then((items) => {
+    // browser.storage.local.get("domainWhitelist").then((items) => {
+    //   const domain = new URL(tab.url).hostname;
+    //   tabStates[tab.id].neverSuspendDomain =
+    //     items.domainWhitelist[domain] || false;
+    // });
+    browser.storage.local.get("domainWhitelist", (items) => {
       const domain = new URL(tab.url).hostname;
       tabStates[tab.id].neverSuspendDomain =
         items.domainWhitelist[domain] || false;
@@ -225,6 +264,11 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     case actions.RELOAD:
       console.log(actions.RELOAD);
       reload(request.activeTab);
+      break;
+
+    case actions.UNSUSPEND:
+      console.log(actions.UNSUSPEND);
+      reload(request.activeTab, false);
       break;
 
     case actions.FORCE_SUSPEND:
