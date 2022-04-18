@@ -6,7 +6,7 @@
 [license-url]: https://github.com/tldr-pages/tldr/blob/main/LICENSE.md
 [license-image]: https://img.shields.io/github/license/abayomi185/simple-suspender?color=greeen
 
-Simple Suspender, tab suspender built for Safari and cross compatible with other browsers.
+Simple Suspender, tab suspender built for Safari and cross compatible with Firefox (Chrome's browser API has a different name, 'Find and Replace All' would make it in Chromium based browsers).
 
 ![](screenshots/preview.jpg)
 
