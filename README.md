@@ -4,25 +4,21 @@
 
 
 [license-url]: https://github.com/tldr-pages/tldr/blob/main/LICENSE.md
-[license-image]: https://img.shields.io/badge/license-CC_BY_4.0-blue.svg
+[license-image]: 
 
-Coming Soon (if requested):
+Simple Suspender, tab suspender built for Safari and cross compatible with other browsers.
 
-Whitelist
-Customisable Keyboard Shortcuts
+![](screenshots/preview.jpg)
 
-Extension Suggestions:
+## Possible additions if requested:
+- Whitelist list
+- Customisable Keyboard Shortcuts
 
-Manage state and saving to local state
+## To-do:
+- Favicon
+- Loop through and suspend at intervals
+- Check: manage state and saving to local state
+- Use url params if tab info not available (e.g after restart)
 
-favicon
-
-emoji in title
-
-Loop through and suspend
-
-Todo:
-Loop through and suspend at intervals
-
-Limitations:
-Safari nukes tab history when tab is updated initially
+## Limitations:
+- Safari nukes tab history when tab is updated initially for "Privacy" it seems
