@@ -15,10 +15,10 @@ Simple Suspender, tab suspender built for Safari and cross compatible with other
 - Customisable Keyboard Shortcuts
 
 ## To-do:
-- Favicon
-- Loop through and suspend at intervals
-- Check: manage state and saving to local state
-- Use url params if tab info not available (e.g after restart)
+- [ ] Favicon
+- [ ] Loop through and suspend at intervals
+- [ ] Check: manage state and saving to local state
+- [ ] Use url params if tab info not available (e.g after restart)
 
 ## Limitations:
 - Safari nukes tab history when tab is updated initially for "Privacy" it seems
