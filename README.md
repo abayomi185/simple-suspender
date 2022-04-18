@@ -1,4 +1,4 @@
-# Simple Suspend
+# Simple Suspender
 
 [![license][license-image]][license-url]
 
