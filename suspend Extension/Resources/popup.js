@@ -144,7 +144,7 @@ const getSuspendOptionInfo = () => {
   browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     browser.runtime.sendMessage(
       {
-        action: "GI",
+        action: actions.GET_SUSPEND_INFO,
         activeTab: tabs[0].id,
       },
       (response) => {
